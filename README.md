@@ -5,11 +5,11 @@ Because the Eos Framework is based on Reactor, it is easily extensible and offer
 
 Using Eos, Push Notification Server and Client can be created in minutes.
 
-### Patterns
+### Patterns implemented
 
 * Singleton - LighthouseServer/LighthouseServer.cs
-* Singleton - LighthouseEnabledClient/Client.cs
-* Observer - LighthouseEnabledClient/Client.cs
+* Singleton - LighthouseClientExample/Client.cs
+* Observer - LighthouseClientExample/Client.cs
 * Proxy - Reactor.dll
 * Factory - LighthouseServer/Factory + LighthouseServer.cs
 * MVC - LighthouseClientExample

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LighthouseClientExample.View"
-             mc:Ignorable="d" Width="400" Height="70"
+             mc:Ignorable="d" Width="300" Height="40" Margin="5"
              d:DesignHeight="450" d:DesignWidth="800">
     <Border Background="#FF2C2C2C" CornerRadius="10">
         <Grid>
