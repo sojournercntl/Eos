@@ -6,6 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using EosServer;
 using EosShared;
+using LighthouseServer.Factory;
+using LighthouseServer.Strategy;
 using Reactor.Networking.Server;
 using Reactor.Util;
 
@@ -16,17 +18,30 @@ namespace LighthouseServer
     /// </summary>
     public class Server: EosCoreServer
     {
+        private static Server _instance = null;
+        private static readonly object padlock = new object();
+
         private const int _portTcp = 5022;
         private const int _portUdp = 5023;
         private Timer _timer;
 
+        public static Server Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if(_instance == null)
+                        _instance = new Server();
+                    return _instance;
+                }
+            }
+        }
 
-        public Server()
+        private Server()
         {
             base.Start(_portUdp,1000*20,1000,IPTool.GetLocalIPAddress(),_portTcp);
             _timer = new Timer(SendSignal, "LIGHTHOUSE", 0, 1000);
-
-            
         }
 
         public override bool ValidateAccessKey(byte[] key)
@@ -63,14 +78,22 @@ namespace LighthouseServer
 
         public void SendSignal(object state)
         {
-            EosPacket p = new EosPacket();
-            p.Sender = ReactorServer.Id;
-            p.Data.Add(Encoding.Unicode.GetBytes(DateTime.Now.ToString()));
+            NotificationFactory factory = NotificationFactory.Instance;
+            INotification notification = factory.CreateNotification(NotificationType.Time);
+
+            // Send 
             foreach (var x in TtlClients)
             {
                 string username = Encoding.Unicode.GetString((byte[])x.Key.Tag);
-                base.SendPushMessage(username, p);
+                // Strategy Pattern implementation
+                ISendStrategy strategy = new ConcreteDefaultSender();
+                strategy.SendPacket(notification.CreatePacket(),this,username);
             }
+
+            //EosPacket p = new EosPacket();
+            //p.Sender = ReactorServer.Id;
+            //p.Data.Add(Encoding.Unicode.GetBytes(DateTime.Now.ToString()));
+
         }
 
     }

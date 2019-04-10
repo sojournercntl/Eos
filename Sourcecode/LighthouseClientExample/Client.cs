@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using EosClient;
 using EosShared;
-using LighthouseEnabledClient.Observer;
+using LighthouseClientExample.Observer;
 using Reactor.Util;
 
-namespace LighthouseEnabledClient
+namespace LighthouseClientExample
 {
-    public class Client : EosCoreClient,  ISubject
+    public class Client : EosCoreClient, ISubject
     {
         private static Client _instance = null;
         private static object padlock = new object();
-        
+
         public static Client Instance
         {
             get
             {
                 lock (padlock)
                 {
-                    if(_instance == null)
+                    if (_instance == null)
                         _instance = new Client();
                     return _instance;
                 }
@@ -37,7 +36,7 @@ namespace LighthouseEnabledClient
 
         private Client() : base()
         {
-            start:
+        start:
             try
             {
                 Start(DataGenerator.Generate(12), "ACCESSKEY", _portUDP, _portTCP, IPTool.GetLocalIPAddress());
@@ -59,7 +58,7 @@ namespace LighthouseEnabledClient
         protected override void HandlePushMessage(EosPacket p)
         {
             Notify(p);
-            Console.WriteLine(DateTime.Now.ToString() + "> Client | Received Push Message: "+Encoding.Unicode.GetString(p.Data[0]));
+            Console.WriteLine(DateTime.Now.ToString() + "> Client | Received Push Message: " + Encoding.Unicode.GetString(p.Data[0]));
             base.HandlePushMessage(p);
         }
 

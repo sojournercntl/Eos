@@ -10,7 +10,8 @@ namespace LighthouseEnabledClient
     {
         static void Main(string[] args)
         {
-            Client c = new Client();
+            Client client = Client.Instance;
+
         }
     }
 }

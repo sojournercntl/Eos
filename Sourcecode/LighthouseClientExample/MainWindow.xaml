@@ -1,0 +1,22 @@
+﻿<Window x:Class="LighthouseClientExample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LighthouseClientExample"
+        mc:Ignorable="d"
+        Title="Lighthouse - Client Example" Height="450" Width="800">
+    <Grid Background="Black">
+        <Button Name="btn_undo" Content="Undo" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Background="#FF0F0F0F" BorderBrush="White" Foreground="White" Click="Btn_undo_Click"/>
+        <Button Name="btn_redo" Content="Redo" HorizontalAlignment="Left" Margin="90,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Background="#FF0F0F0F" BorderBrush="White" Foreground="White" Click="Btn_redo_Click"/>
+        <Button Name="btn_start" Content="Start" HorizontalAlignment="Left" Margin="170,0,0,10" VerticalAlignment="Bottom" Width="75" Foreground="White" BorderBrush="White" Background="#FF6DFF95" Click="Btn_start_Click"/>
+        <Button Name="btn_stop" Content="Stop" HorizontalAlignment="Left" Margin="250,0,0,10" VerticalAlignment="Bottom" Width="75" Foreground="White" Background="#FFFF4141" BorderBrush="White" Click="Btn_stop_Click"/>
+        <Label Name="lbl_status" Content="Status" HorizontalAlignment="Left" Margin="330,0,0,10" VerticalAlignment="Bottom" Height="23" Foreground="#FF9083E4"/>
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" Margin="10,10,10,38">
+            <StackPanel Name="stack_messages">
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Window>

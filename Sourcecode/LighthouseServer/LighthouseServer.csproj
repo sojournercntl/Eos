@@ -47,9 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factory\INotification.cs" />
+    <Compile Include="Factory\NotificationFactory.cs" />
+    <Compile Include="Factory\NotificationType.cs" />
+    <Compile Include="Factory\TimeNotification.cs" />
     <Compile Include="LighouseServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strategy\ConcreteDefaultSender.cs" />
+    <Compile Include="Strategy\SendStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
