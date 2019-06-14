@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace EosServer
 {
+    /// <summary>
+    /// Signal class - Sends UDP Messages to the client
+    /// </summary>
     public static class EosSignal
     {
         public static void SendNotification(string ip,int port, byte[] data)

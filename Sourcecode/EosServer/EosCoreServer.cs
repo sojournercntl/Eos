@@ -11,14 +11,23 @@ using Reactor.Networking.Server;
 
 namespace EosServer
 {
-    // TODO: Make Singleton
+    /// <summary>
+    /// The EOS Server - PushNotification Server
+    /// </summary>
     public class EosCoreServer
     {
         protected int SignalPort { get; set; }
         protected long TimeToLive { get; set; }
         protected int TimeBetweenChecks { get; set; }
 
+        /// <summary>
+        /// Time to live timer - resets connections after time of subscription is over
+        /// </summary>
         protected Timer ttlTimer;
+
+        /// <summary>
+        /// Dictionary of all clients with their subscriptions
+        /// </summary>
         protected Dictionary<ReactorVirtualClient,long> TtlClients = new Dictionary<ReactorVirtualClient, long>();
 
         private bool serverRunning = false;
@@ -26,6 +35,14 @@ namespace EosServer
 
         public EosCoreServer(){}
 
+        /// <summary>
+        /// Start the server
+        /// </summary>
+        /// <param name="sp">signal port</param>
+        /// <param name="ttl">time to live in ms</param>
+        /// <param name="tbc">time between checks</param>
+        /// <param name="ip">ip of system endpoint</param>
+        /// <param name="port">port to accept tcp connections</param>
         public void Start(int sp, long ttl, int tbc, string ip, int port)
         {
             this.SignalPort = sp;
@@ -92,11 +109,20 @@ namespace EosServer
             }
         }
 
+        /// <summary>
+        /// Override this to validate the bytes of the access key with your own logic.
+        /// </summary>
+        /// <param name="key">access key</param>
+        /// <returns>true if okay, false to deny subscription</returns>
         public virtual bool ValidateAccessKey(byte[] key)
         {
             return true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="state"></param>
         protected virtual void HandleCheckTtl(object state)
         {
             List<ReactorVirtualClient> clientsToRemove = new List<ReactorVirtualClient>();
@@ -159,8 +185,6 @@ namespace EosServer
         }
         
         #endregion
-
-
 
     }
 }

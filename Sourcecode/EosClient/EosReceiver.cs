@@ -9,10 +9,21 @@ using System.Threading.Tasks;
 
 namespace EosClient
 {
+    
+    /// <summary>
+    /// Delegate - Packet Received
+    /// </summary>
+    /// <param name="data">Data-Received</param>
     public delegate void ReceivedPacket(byte[] data);
 
+    /// <summary>
+    /// Receiver - For EOS notifications
+    /// </summary>
     public class EosReceiver
     {
+        /// <summary>
+        /// The port to receive messages
+        /// </summary>
         public int RECEIVER_PORT = 5124;
 
         private Thread receiverThread;
