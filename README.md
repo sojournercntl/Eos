@@ -2,13 +2,15 @@
 ![Logo](https://raw.githubusercontent.com/sojournercntl/Eos/master/Doc/eos_logo.svg?sanitize=true)
 
 
+#### Connectionless Push Notifications
+
 The Eos Framework offers unique functionality to send push notifications to real-time applications that work without a connection.
 
 Because the Eos Framework is based on Reactor, it is easily extensible and offers full security coverage. Three step authentication and subsequent synchronous encryption are included with no additional requirements.
 
 Using Eos, Push Notification Server and Client can be created in minutes.
 
-#### How it works
+#### Functionality
 
 The EOS Framework works as described below:
 
@@ -20,7 +22,7 @@ Advantages of this new method are:
 Resource intensive connections are no longer necessary
 None of the methods such as long polling or SSE are used. This also eliminates their disadvantages.
 
-#### Patterns implemented
+#### Interactive Examples
 
 In Addition, the project structure contains a few examples which show how to implement EOS into existing applications. The Lighthouse Server/Client also shows how to use different patterns.
 
